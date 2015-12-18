@@ -1,8 +1,5 @@
 var elixir = require('laravel-elixir');
 
-// Custom config folder
-//elixir.config.assetsDir = 'app/';
-
 /*
  |--------------------------------------------------------------------------
  | Elixir Asset Management
@@ -24,6 +21,11 @@ var path = {
 };
 
 elixir(function(mix){
+
+    // Browser Sync
+    mix.browserSync({
+        proxy: 'localhost:7575'
+    });
 
     // Sass
     mix.sass('app.scss');

@@ -24,5 +24,8 @@
     "gulp": "^3.9.0",
     "gulp-ruby-sass": "^2.0.6",
     "laravel-elixir": "^4.1.1"
+  },
+  "dependencies": {
+    "express": "^4.13.3"
   }
 }
