@@ -1,0 +1,48 @@
+{
+  "name": "twitch-timeline",
+  "description": "Twitch Timeline",
+  "main": "server.js",
+  "authors": [
+    "Petter Kraabøl <petter.zarlach@gmail.com>"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "Twitch",
+    "timeline"
+  ],
+  "homepage": "https://github.com/PetterKraabol/twitch-timeline",
+  "moduleType": [
+    "node"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.8",
+    "angular-route": "~1.4.8",
+    "angular-sanitize": "~1.4.8",
+    "angular-translate": "~2.8.1",
+    "angular-translate-storage-cookie": "~2.8.1",
+    "angular-translate-storage-local": "~2.8.1",
+    "angular-translate-handler-log": "~2.8.1",
+    "angular-animate": "~1.4.8",
+    "angular-cache": "~4.4.2",
+    "angular-loading-bar": "~0.8.0",
+    "angular-cookies": "~1.4.8",
+    "socket.io-client": "~1.3.7",
+    "moment": "~2.10.6",
+    "moment-timezone": "~0.4.1",
+    "angulartics": "~0.20.2",
+    "angulartics-google-analytics": "~0.1.3",
+    "ng-dialog": "~0.5.6",
+    "font-awesome": "fontawesome#~4.5.0",
+    "normalize-css": "normalize.css#~3.0.3",
+    "angular-tooltips": "~1.0.6",
+    "angular-moment": "~0.10.3",
+    "angular-resource": "~1.4.8"
+  }
+}
