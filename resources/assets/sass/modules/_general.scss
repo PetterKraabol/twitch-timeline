@@ -1,0 +1,46 @@
+/**
+ * General
+ *
+ * General styles are default stylings for html elements
+ * and abstract style classes.
+ */
+
+.noselect {
+    cursor:default;
+    -webkit-touch-callout:none;
+    @include prefix(user-select, none, 'webkit' 'khtml' 'moz' 'ms');
+}
+
+.select {
+    cursor:auto;
+    -webkit-touch-callout:auto;
+    @include prefix(user-select, auto, 'webkit' 'khtml' 'moz' 'ms');
+}
+
+.clickable {
+    cursor:pointer;
+}
+
+.center {
+    margin: auto;
+}
+
+.clear:after {
+    clear: both;
+    content: "";
+    display: table;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+a {
+    text-decoration:inherit;
+    color:inherit;
+}
+
+// Make a elements fill li
+li > a {
+    display:block;
+}

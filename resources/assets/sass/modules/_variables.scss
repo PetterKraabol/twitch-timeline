@@ -1,0 +1,19 @@
+/**
+ * Global variables
+ *
+ * This file contains colors, widths, heights etc for every element.
+ * Most colors and measurements should be dependent on each other
+ * to make it easier to change as few places as possible.
+ *
+ */
+
+// General
+$color-twitch:#6441A5;
+
+// Application (default settings)
+$app-background-color:darken(white, 3%);
+$app-font-family:'Roboto', sans-serif;
+$app-font-weight:400;
+$app-primary-color:#6F5AAE;
+$app-secondary-color:#35485B;
+$app-accent-color:#67B196;

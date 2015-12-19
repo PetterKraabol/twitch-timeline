@@ -12,20 +12,15 @@ var elixir = require('laravel-elixir');
  */
 
 var path = {
-    'bower' : '/bower_components/',
-    'npm'   : '/node_modules/',
+    'bower' : 'bower_components/',
+    'npm'   : 'node_modules/',
     'js'    : 'resources/assets/js/',
     'sass'  : 'resources/assets/sass/',
-    'views' : '/resources/views/',
-    'public': '/public/',
+    'views' : 'resources/views/',
+    'public': 'public/',
 };
 
 elixir(function(mix){
-
-    // Browser Sync
-    mix.browserSync({
-        proxy: 'localhost:7575'
-    });
 
     // Sass
     mix.sass('app.scss');
@@ -70,5 +65,10 @@ elixir(function(mix){
 
     // Fonts
     mix.copy(path.bower + 'font-awesome/fonts', path.public + 'fonts');
+
+    // Browser Sync
+    mix.browserSync({
+        proxy: 'localhost:7575'
+    });
 
 });

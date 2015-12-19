@@ -1,7 +1,27 @@
-body {
-    margin:0;
 
-    a {
-        text-decoration:none;
-    }
+// Bower
+@import 'bower_components/normalize-css/normalize';
+@import 'bower_components/font-awesome/scss/font-awesome';
+@import 'bower_components/angular-loading-bar/build/loading-bar';
+@import 'bower_components/angular-tooltips/dist/angular-tooltips';
+@import 'bower_components/ng-dialog/css/ngDialog';
+
+// Vendors
+@import 'vendor/all';
+
+// Modules
+@import 'modules/all';
+
+// Pages
+body {
+    @import 'page/timeline';
+
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#6f5aae+0,6746a7+59,6745a7+100 */
+    background: #6f5aae; /* Old browsers */
+    background: -moz-linear-gradient(left,  #6f5aae 0%, #6746a7 59%, #6745a7 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(left,  #6f5aae 0%,#6746a7 59%,#6745a7 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to right,  #6f5aae 0%,#6746a7 59%,#6745a7 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6f5aae', endColorstr='#6745a7',GradientType=1 ); /* IE6-9 */
+
+
 }

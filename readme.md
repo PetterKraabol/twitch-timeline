@@ -2,4 +2,8 @@
 
 A timeline of your favorite streamers' past broadcasts and highlights.
 
-Developed by Petter Kraabøl
+## Instructions
+
+Coming soon...
+
+*Developed by Petter Kraabøl*

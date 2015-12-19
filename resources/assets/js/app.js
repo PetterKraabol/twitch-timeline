@@ -21,5 +21,6 @@ var app = angular.module('TwitchTimeline', [
     'angulartics.google.analytics',
     'pascalprecht.translate',
     'angular-loading-bar',
+    //'720kb.tooltips',
     'ngDialog',
 ]);

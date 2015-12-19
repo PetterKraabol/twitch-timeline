@@ -54379,7 +54379,7 @@ var app = angular.module('TwitchTimeline', [
     'angulartics.google.analytics',
     'pascalprecht.translate',
     'angular-loading-bar',
-    //'720kb.tooltips',
+    '720kb.tooltips',
     'ngDialog',
 ]);
 /*
@@ -54484,14 +54484,14 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
  |
  |
  */
-/*app.config(['tooltipsConfigProvider', function(tooltipsConfigProvider) {
+app.config(['tooltipsConfigProvider', function(tooltipsConfigProvider) {
     tooltipsConfigProvider.options({
         lazy: false,
         scroll: true,
         size: 'small',
         speed: 'fast',
     });
-}]);*/
+}]);
 /*
 |--------------------------------------------------------------------------
 | Timeline Controller

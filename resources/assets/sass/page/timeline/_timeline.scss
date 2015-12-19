@@ -1,0 +1,98 @@
+#timeline {
+    @include opacity(0.95);
+
+    ul.timestamps {
+        list-style:none;
+        color:white;
+        font-size:0.7em;
+        text-align:center;
+
+        li {
+            display:inline;
+            float:left;
+            padding-right:110px;
+            padding-left:110px;
+
+            &:first-child {
+                padding-left:0;
+            }
+
+            &:last-child {
+                padding-right:0;
+            }
+        }
+    }
+
+    .streams {
+        clear:both;
+        padding-top:10px;
+
+        ul.layer {
+            list-style:none;
+
+            li.video {
+                position:fixed;
+                @include transition(0.1s);
+                @extend .clickable;
+
+                &:hover {
+                    @include box-shadow(0px 4px 20px -4px rgba(0,0,0,0.2));
+                }
+
+                ul.info {
+                    height:100px;
+                    width:500px;
+                    margin:0;
+                    padding:0;
+                    list-style:none;
+                    overflow: hidden;
+                    background-color:darken($app-primary-color, 5);
+                    @include border-radius(5px);
+
+                    li {
+                        display:inline;
+
+                        &.thumbnail {
+                            display:block;
+                            float:left;
+                            margin:0;
+                            padding:0;
+                            height:100px;
+                            width:180px;
+                            background-size:180px;
+                            background-position:center;
+                            background-repeat:no-repeat;
+                        }
+
+                        &.text {
+                            z-index:2;
+                            float:left;
+                            position:absolute;
+                            color:white;
+                            padding:20px;
+                            font-weight:100;
+                            font-size:0.8em;
+                        }
+
+                        &.banner {
+                            filter: blur(7px);
+                            z-index:1;
+                            display:block;
+                            float:left;
+                            margin:0;
+                            padding:0;
+                            height:100px;
+                            width:320px;
+                            background-size:500px;
+                            background-position:center;
+                            background-repeat:no-repeat;
+                            @include opacity(0.3);
+                            @include border-radius(0px 5px 5px 0px);
+                        }
+                    }
+
+                }
+            }
+        }
+    }
+}

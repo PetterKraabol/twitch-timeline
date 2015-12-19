@@ -1,0 +1,200 @@
+
+/**
+ * Mixin helper to output vendor-prefixed CSS
+ * @access private
+ * @author HugoGiraudel
+ * @param {String} $property - Unprefixed CSS property
+ * @param {*} $value - Raw CSS value
+ * @param {List} $prefixes [()] - List of prefixes to output
+*/
+@mixin prefix($property, $value, $prefixes: ()) {
+  @each $prefix in $prefixes {
+    -#{$prefix}-#{$property}: $value;
+  }
+
+  #{$property}: $value;
+}
+
+/**
+ * Border radius
+ */
+@mixin border-radius($radius) {
+    @include prefix(border-radius, $radius, 'webkit' 'moz' 'ms' 'o');
+}
+
+/**
+ * Separated border-radius helpers
+ * @access public
+ * @param {Length} $top-left-radius - Top left radius
+ * @param {Length} $top-right-radius - Top right radius
+ * @param {Length} $bottom-right-radius - Bottom right radius
+ * @param {Length} $bottom-left-radius - Bottom left radius
+ * @example scss - Usage
+ *   .foo {
+ *     @include border-radius-separate(1px, 2px, 3px, 4px);
+ *   }
+ * @example css - Result
+ *   .foo {
+ *     -webkit-border-top-left-radius: 1px;
+ *     -moz-border-top-left-radius: 1px;
+ *     border-top-left-radius: 1px;
+ *     -webkit-border-top-right-radius: 2px;
+ *     -moz-border-top-right-radius: 2px;
+ *     border-top-right-radius: 2px;
+ *     -webkit-border-bottom-right-radius: 3px;
+ *     -moz-border-bottom-right-radius: 3px;
+ *     border-bottom-right-radius: 3px;
+ *     -webkit-border-bottom-left-radius: 4px;
+ *     -moz-border-bottom-left-radius: 4px;
+ *     border-bottom-left-radius: 4px;
+ *   }
+*/
+@mixin border-radius-separate($top-left-radius, $top-right-radius, $bottom-right-radius, $bottom-left-radius) {
+    @include prefix(border-top-left-radius, $top-left-radius, 'webkit' 'moz' 'ms' 'o');
+    @include prefix(border-top-right-radius, $top-right-radius, 'webkit' 'moz' 'ms' 'o');
+    @include prefix(border-bottom-right-radius, $bottom-right-radius, 'webkit' 'moz' 'ms' 'o');
+    @include prefix(border-bottom-left-radius, $bottom-left-radius, 'webkit' 'moz' 'ms' 'o');
+}
+
+/**
+ * Horizontally centers block elements
+ * @access public
+ * @example scss - Usage
+ *   .foo {
+ *     @include center-block;
+ *   }
+ * @example css - Result
+ *   .foo {
+ *     display: block;
+ *     margin-left: auto;
+ *     margin-right: auto;
+ *   }
+*/
+@mixin center-block {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/**
+ * Animations and keyframes
+ *
+ * @include keyframes(slide-down) {
+ *   0% { opacity: 1; }
+ *   90% { opacity: 0; }
+ * }
+ *
+ * .element {
+ *   width: 100px;
+ *   height: 100px;
+ *   background: black;
+ *   @include animation('slide-down 5s 3');
+ * }
+ */
+@mixin keyframes($animation-str) {
+  @-webkit-keyframes #{$animation-str} {
+    @content;
+  }
+  @-moz-keyframes #{$animation-str} {
+    @content;
+  }
+  @-ms-keyframes #{$animation-str} {
+    @content;
+  }
+  @-o-keyframes #{$animation-str} {
+    @content;
+  }
+  @keyframes #{$animation-str} {
+    @content;
+  }
+}
+
+/**
+ * Animation
+ * @param  {string} $str example: width 1s
+ */
+@mixin animation($str) {
+  @include prefix(animation, #{$str}, 'webkit' 'moz' 'ms' 'o');
+}
+
+/**
+ * Cross browser opacity
+ */
+@mixin opacity($opacity) {
+  opacity: $opacity;
+  $opacity-ie: $opacity * 100;
+  filter: alpha(opacity=$opacity-ie); //IE8
+}
+
+/**
+ * Clearfix extend
+ * @access public
+ * @example scss - Usage
+ *   .foo {
+ *     @extend %clearfix;
+ *   }
+*/
+%clearfix {
+    *zoom: 1;
+
+    &:before, &:after {
+        content: ' ';
+        display: table;
+    }
+
+    &:after {
+        clear: both;
+    }
+}
+
+/**
+ * Automatically prefix any transform
+ * @access public
+ * @param {String} $transformation - The transform to apply
+ * @example scss - Usage
+ *   .foo {
+ *     @include transform(translateX(10px));
+ *   }
+ * @example css - Result
+ *   .foo {
+ *     -webkit-transform: translateX(10px);
+ *     -ms-transform: translateX(10px);
+ *     transform: translateX(10px);
+ *   }
+*/
+@mixin transform($transformation){
+  @include prefix(transform, $transformation, 'webkit' 'moz' 'ms' 'o');
+}
+
+/**
+ * Transition helper
+ * @param {Time} $time [1s] - Duration
+ * @param {String} $timing-function [ease-in-out] - Timing function or cubic bezier curve
+ * @example scss - Usage
+ *   .foo {
+ *     @include transition(0.3s, ease-in);
+ *   }
+ * @example css - Result
+ *   .foo {
+ *     -webkit-transition: all 0.3s ease-in;
+ *     transition: all 0.3s ease-in;
+ *   }
+*/
+@mixin transition($time: 1s, $timing-function: ease-in-out) {
+    @include prefix(transition, all $time $timing-function, 'webkit' 'moz' 'ms' 'o');
+}
+
+/**
+ * Adds a shadow to an element
+ *
+ * @param  {px} $h      Horizontal Length
+ * @param  {px} $v      Vertical Length
+ * @param  {px} $blur   Blur Radius
+ * @param  {px} $spread Blur Spread
+ * @param  {rgb} $color Shadow color
+ * @return {element}    box-shadow
+ *
+ */
+@mixin box-shadow($str) {
+    @include prefix(box-shadow, $str, 'webkit' 'moz' 'ms' 'o');
+}

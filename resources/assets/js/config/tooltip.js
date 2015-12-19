@@ -8,11 +8,11 @@
  |
  |
  */
-app.config(['tooltipsConfigProvider', function(tooltipsConfigProvider) {
+/*app.config(['tooltipsConfigProvider', function(tooltipsConfigProvider) {
     tooltipsConfigProvider.options({
         lazy: false,
         scroll: true,
         size: 'small',
         speed: 'fast',
     });
-}]);
+}]);*/

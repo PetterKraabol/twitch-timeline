@@ -1,0 +1,72 @@
+#header {
+    color:white;
+    font-size:0.7em;
+    padding:20px;
+    text-align:center;
+
+    .menu-icon {
+        float:left;
+        font-size:1.7em;
+        @extend .clickable;
+
+        &:hover {
+            @include opacity(0.9);
+        }
+    }
+
+    ul.profile {
+        float:right;
+        list-style:none;
+
+        li {
+            display:inline;
+
+            &.display-name {
+                font-size:1.2em;
+            }
+
+            &.logo {
+                float:right;
+                padding-left:15px;
+
+                img {
+                    height:32px;
+                    margin-top:-8px;
+                    @include border-radius(18px);
+                }
+            }
+        }
+    }
+
+    ul.date {
+        width:150px;
+        margin:auto;
+        list-style:none;
+
+        li {
+            display:inline;
+            margin:0;
+            padding:0;
+
+            &.text {
+                background-color:darken($app-primary-color, 10);
+                padding:5px;
+                padding-left:15px;
+                padding-right:15px;
+                @include border-radius(5px 0px 0px 5px);
+            }
+
+            &.dropdown-button {
+                background-color:darken($app-primary-color, 15);
+                text-align:center;
+                padding:5px;
+                padding-left:10px;
+                padding-right:10px;
+                margin-left:-5px;
+                @include border-radius(0px 5px 5px 0px);
+                @extend .clickable;
+            }
+        }
+    }
+
+}
