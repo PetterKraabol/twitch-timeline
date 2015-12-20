@@ -54494,6 +54494,47 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
 }]);*/
 /*
 |--------------------------------------------------------------------------
+| Timeline Factory
+|--------------------------------------------------------------------------
+|
+|
+|
+|
+|
+*/
+app.factory('Timeline', ['$q', '$http', function($q, $http) {
+
+    var self     = {};  // Returned object with functions
+
+    function request(url, cache) {
+        var d = $q.defer();
+        $http.get(url, {
+            cache: true,
+        }).
+
+            then(function(response) {
+                d.resolve(response.data);
+            }, function(reponse){
+                console.log('Error loading data from: ' + url);
+                d.resolve(response);
+            });
+
+        return d.promise;
+    }
+
+    self.highlights = function(callback) {
+
+        request('https://api.twitch.tv/kraken/videos/followed?oauth_token=6aihp2olcu6jetyfxcw6mke5n7d04y').then(function(highlights) {
+            return callback(highlights);
+        })
+
+    };
+
+    return self;
+
+}]);
+/*
+|--------------------------------------------------------------------------
 | Timeline Controller
 |--------------------------------------------------------------------------
 |
@@ -54517,9 +54558,12 @@ app.controller('MainController',['$scope', function($scope) {
 |
 |
 */
-app.controller('TimelineController',['$scope', function($scope) {
+app.controller('TimelineController', ['$scope', 'Timeline', function($scope, Timeline) {
 
-    console.log('TimelineController');
+    Timeline.highlights(function(highlights) {
+        console.log(highlights.videos);
+        $scope.highlights = highlights.videos;
+    });
 
 }]);
 //# sourceMappingURL=scripts.js.map
