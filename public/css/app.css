@@ -2917,7 +2917,7 @@ body.ngdialog-open {
  * General styles are default stylings for html elements
  * and abstract style classes.
  */
-.noselect {
+.noselect, body #page.timeline footer ul.video-type {
   cursor: default;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -2935,7 +2935,7 @@ body.ngdialog-open {
   -ms-user-select: auto;
   user-select: auto; }
 
-.clickable, body #page.timeline #header .menu-icon, body #page.timeline #header ul.date li.dropdown-button, body #page.timeline #timeline .streams ul.layer li.video, body #page.timeline footer ul.video-type li {
+.clickable, body #page.timeline #header .menu-icon, body #page.timeline #header ul.date li.dropdown-button, body #page.timeline #timeline .streams ul.layer li.video ul.info, body #page.timeline footer ul.video-type li {
   cursor: pointer; }
 
 .center {
@@ -2965,7 +2965,8 @@ body {
   background: linear-gradient(to right, #6f5aae 0%, #6746a7 59%, #6745a7 100%);
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6f5aae', endColorstr='#6745a7',GradientType=1 );
-  /* IE6-9 */ }
+  /* IE6-9 */
+  overflow: hidden; }
   body #page.timeline {
     /**
  * Timeline Variables
@@ -2974,8 +2975,11 @@ body {
     body #page.timeline #header {
       color: white;
       font-size: 0.7em;
+      top: 0;
       padding: 20px;
-      text-align: center; }
+      text-align: center;
+      position: fixed;
+      width: 100%; }
       body #page.timeline #header .menu-icon {
         float: left;
         font-size: 1.7em; }
@@ -2984,6 +2988,8 @@ body {
           filter: alpha(opacity=90); }
       body #page.timeline #header ul.profile {
         float: right;
+        margin-right: 40px;
+        margin-top: -2px;
         list-style: none; }
         body #page.timeline #header ul.profile li {
           display: inline; }
@@ -3022,6 +3028,9 @@ body {
       opacity: 0.95;
       filter: alpha(opacity=95); }
       body #page.timeline #timeline ul.timestamps {
+        top: 0;
+        margin-top: 64px;
+        position: fixed;
         list-style: none;
         color: white;
         font-size: 0.7em;
@@ -3037,16 +3046,12 @@ body {
             padding-right: 0; }
       body #page.timeline #timeline .streams {
         clear: both;
-        padding-top: 10px; }
+        margin-top: 100px; }
         body #page.timeline #timeline .streams ul.layer {
           list-style: none; }
           body #page.timeline #timeline .streams ul.layer li.video {
-            position: fixed;
+            margin: 20px;
             transition: all 0.1s ease-in-out; }
-            body #page.timeline #timeline .streams ul.layer li.video:hover {
-              -ms-box-shadow: 0px 4px 20px -4px rgba(0, 0, 0, 0.2);
-              -o-box-shadow: 0px 4px 20px -4px rgba(0, 0, 0, 0.2);
-              box-shadow: 0px 4px 20px -4px rgba(0, 0, 0, 0.2); }
             body #page.timeline #timeline .streams ul.layer li.video ul.info {
               height: 100px;
               width: 500px;
@@ -3056,6 +3061,10 @@ body {
               overflow: hidden;
               background-color: #634fa0;
               border-radius: 5px; }
+              body #page.timeline #timeline .streams ul.layer li.video ul.info:hover {
+                -ms-box-shadow: 0px 4px 20px -4px rgba(0, 0, 0, 0.2);
+                -o-box-shadow: 0px 4px 20px -4px rgba(0, 0, 0, 0.2);
+                box-shadow: 0px 4px 20px -4px rgba(0, 0, 0, 0.2); }
               body #page.timeline #timeline .streams ul.layer li.video ul.info li {
                 display: inline; }
                 body #page.timeline #timeline .streams ul.layer li.video ul.info li.thumbnail {

@@ -22,6 +22,7 @@ body {
     background: -webkit-linear-gradient(left,  #6f5aae 0%,#6746a7 59%,#6745a7 100%); /* Chrome10-25,Safari5.1-6 */
     background: linear-gradient(to right,  #6f5aae 0%,#6746a7 59%,#6745a7 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6f5aae', endColorstr='#6745a7',GradientType=1 ); /* IE6-9 */
+    overflow:hidden;
 
 
 }

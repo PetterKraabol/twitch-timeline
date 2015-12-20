@@ -2,6 +2,9 @@
     @include opacity(0.95);
 
     ul.timestamps {
+        top:0;
+        margin-top:64px;
+        position:fixed;
         list-style:none;
         color:white;
         font-size:0.7em;
@@ -25,19 +28,14 @@
 
     .streams {
         clear:both;
-        padding-top:10px;
+        margin-top:100px;
 
         ul.layer {
             list-style:none;
 
             li.video {
-                position:fixed;
+                margin:20px;
                 @include transition(0.1s);
-                @extend .clickable;
-
-                &:hover {
-                    @include box-shadow(0px 4px 20px -4px rgba(0,0,0,0.2));
-                }
 
                 ul.info {
                     height:100px;
@@ -48,6 +46,11 @@
                     overflow: hidden;
                     background-color:darken($app-primary-color, 5);
                     @include border-radius(5px);
+                    @extend .clickable;
+
+                    &:hover {
+                        @include box-shadow(0px 4px 20px -4px rgba(0,0,0,0.2));
+                    }
 
                     li {
                         display:inline;

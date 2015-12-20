@@ -41,8 +41,8 @@
         <!-- Streams -->
         <div class="streams">
             <ul class="layer">
-                <li class="video">
-                    <ul class="info" ng-repeat="highlight in highlights">
+                <li class="video" ng-repeat="highlight in highlights">
+                    <ul class="info">
                         <li class="thumbnail" style="background-image:url({{highlight.preview}});"></li>
                         <li class="text" ng-bind="highlight.title"></li>
                         <li class="banner" style="background-image:url({{highlight.preview}});"></li>
@@ -57,8 +57,8 @@
 
         <!-- Select video type -->
         <ul class="video-type">
-            <li class="broadcasts active">Broadcasts</li>
-            <li class="highlights">Highlights</li>
+            <li class="broadcasts" ng-click="changeType('broadcasts')" ng-class="{'active': videoType == 'broadcasts'}" ng-bind="'footer.broadcasts' | translate"></li>
+            <li class="highlights" ng-click="changeType('highlights')" ng-class="{'active': videoType == 'highlights'}" ng-bind="'footer.highlights' | translate"></li>
         </ul>
     </footer>
 </div>

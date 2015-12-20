@@ -9,6 +9,7 @@ footer {
         margin-bottom:20px;
         width:250px;
         list-style:none;
+        @extend .noselect;
 
         li {
             display:inline;

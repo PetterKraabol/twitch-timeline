@@ -1,8 +1,11 @@
 #header {
     color:white;
     font-size:0.7em;
+    top:0;
     padding:20px;
     text-align:center;
+    position:fixed;
+    width:100%;
 
     .menu-icon {
         float:left;
@@ -16,6 +19,8 @@
 
     ul.profile {
         float:right;
+        margin-right:40px;
+        margin-top:-2px;
         list-style:none;
 
         li {
