@@ -11,7 +11,7 @@
 app.controller('TimelineController', ['$scope', 'Timeline', function($scope, Timeline) {
 
     // Default settings
-    $scope.videoType = 'broadcasts';
+    $scope.videoType = 'highlights';
 
     // Video type
     $scope.changeType = function(type) {
@@ -20,8 +20,11 @@ app.controller('TimelineController', ['$scope', 'Timeline', function($scope, Tim
 
     // Highlights
     Timeline.highlights(function(highlights) {
-        console.log(highlights.videos);
-        $scope.highlights = highlights.videos;
+        console.log(' ');
+        console.log('Sorted and layered');
+        highlights.forEach(function(layer) {
+            console.table(layer, ['title', 'recorded_at', 'ended_at']);
+        });
     });
 
 }]);
