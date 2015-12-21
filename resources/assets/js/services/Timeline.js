@@ -53,64 +53,35 @@ app.factory('Timeline', ['$q', '$http', function($q, $http) {
 
         // Sorted list to be returned
         var sortedList = [];
-        var testList = list;
-        var testSortedList = [];
-
-        // Test
-        console.log('test');
-        testSortedList[0] = [];
-        testSortedList[0].push(testList[0]);
-        testList.splice(0, 1);
-        console.log(testSortedList[0]);
 
         // Layer index
         var layer = 0;
 
-        // Step 1 - 5
-        while(list.length > 0) {
+        while (list.length > 0) {
 
-            // Step 1
-            console.log('real');
-            sortedList[0] = [];
-            sortedList[0][0] = testList[0];
-            console.log(sortedList[layer]);
-            console.log(sortedList[layer].length);
+            // Define two-dimensional array
+            sortedList[layer] = [];
 
-            // Step 2 - 4
-            for(var index = 0; index < list.length; index++) {
+            // Move first video to sortedList
+            sortedList[layer].push(list.splice(0, 1)[0]);
 
-                // Step 2
-                if(startsAfterVideo(sortedList[layer][sortedList[layer].length - 1], list[index])){
+            // Construct layers by checking if last video in sortedList ends before selected video in list starts.
+            for (var index = 0; index < list.length; index++) {
 
-                    // Step 3
+                if(sortedList[layer][sortedList[layer].length - 1].ended_at.getTime() <= list[index].recorded_at.getTime()) {
+
                     sortedList[layer].push(list.splice(index, 1)[0]);
-                } else {
-                    console.log('Overlapping: ' + list[index].title);
-                }
+                    index--;
 
-                // Step 4
+                }
             }
 
-            // Step 5
+            // Continue to next layer
             layer++;
         }
 
+
         return sortedList;
-    }
-
-    // Check if secondVideo starts after firstVideo
-    function startsAfterVideo(firstVideo, secondVideo) {
-
-        // First index in layer, meaning sortedList[layer] will be empty.
-        if(firstVideo === undefined){
-            console.log('firstVideo Undefined, secondVideo: ' + secondVideo.title);
-            return true;
-        }
-
-        //console.log(secondVideo.title + ' ->  ' + secondVideo.recorded_at.getTime() + '>=' + firstVideo.ended_at.getTime() + ' -> ' + firstVideo.title);
-
-        // Return if secondVideo starts after firstVideo has ended
-        return secondVideo.recorded_at.getTime() >= firstVideo.ended_at.getTime();
     }
 
     self.highlights = function(callback) {
@@ -118,10 +89,8 @@ app.factory('Timeline', ['$q', '$http', function($q, $http) {
         // Get config
         request('/api/config', false).then(function(config) {
 
-            console.log(config);
-
             // Get highlights
-            request('https://api.twitch.tv/kraken/videos/followed?oauth_token=' + config.oauth_token + '&limit=50', true).then(function(highlights) {
+            request('https://api.twitch.tv/kraken/videos/followed?oauth_token=' + config.oauth_token + '&limit=100', true).then(function(highlights) {
 
                 // Sort videos by recorded_at
                 highlights.videos.sort(function(a, b) {
