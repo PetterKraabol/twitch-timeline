@@ -78,7 +78,7 @@ app.factory('Timeline', ['$q', '$http', function($q, $http) {
                      *
                      * Example:
                      * First cycle: i=0 -> Index 0 is removed from list and index 1 is shifted to index 0.
-                     * Next cycle: i=1 -> index 1 is removed and therefore skipping the new index 0
+                     * Next cycle: i=1 -> index 1 is removed and therefore skipping the new index 0.
                      */
                     i--;
 
