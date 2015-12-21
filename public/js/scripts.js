@@ -54563,7 +54563,7 @@ app.factory('Timeline', ['$q', '$http', function($q, $http) {
      *
      * Visualized
      *
-     * list[index] = name_to-from: (sorted by start time)
+     * list[index] = name_to-from (sorted by start time)
      * video1_13:00-14:00, video2_13:45-14:30, video3_14:10-15:00, video4_14:30-15:00
      *
      * sortedList[layer][index] = name_to-from:
@@ -54585,25 +54585,36 @@ app.factory('Timeline', ['$q', '$http', function($q, $http) {
             // Define two-dimensional array
             sortedList[layer] = [];
 
-            // Move first video to sortedList
+            // Move first video to sortedList (Step 1)
             sortedList[layer].push(list.splice(0, 1)[0]);
 
-            // Construct layers by checking if last video in sortedList ends before selected video in list starts.
-            for (var index = 0; index < list.length; index++) {
+            // Construct layers by checking if last video in sortedList ends before selected video in list starts. (Step 2)
+            for (var i = 0; i < list.length; i++) {
 
-                if(sortedList[layer][sortedList[layer].length - 1].ended_at.getTime() <= list[index].recorded_at.getTime()) {
+                if(sortedList[layer][sortedList[layer].length - 1].ended_at.getTime() <= list[i].recorded_at.getTime()) {
 
-                    sortedList[layer].push(list.splice(index, 1)[0]);
-                    index--;
+                    // Step 3
+                    sortedList[layer].push(list.splice(i, 1)[0]);
+
+                    /**
+                     * As every video above index will be shifted back one index, decrease i by 1 to avoid skipping a video
+                     *
+                     * Example:
+                     * First cycle: i=0 -> Index 0 is removed from list and index 1 is shifted to index 0.
+                     * Next cycle: i=1 -> index 1 is removed and therefore skipping the new index 0
+                     */
+                    i--;
 
                 }
+
+                // Continue loop (Step 4)
             }
 
-            // Continue to next layer
+            // Continue to next layer (Step 5)
             layer++;
         }
 
-
+        // Return sorted list
         return sortedList;
     }
 
