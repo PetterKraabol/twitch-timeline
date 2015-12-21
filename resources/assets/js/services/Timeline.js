@@ -13,10 +13,11 @@ app.factory('Timeline', ['$q', '$http', function($q, $http) {
     var self     = {};  // Returned object with functions
 
     // Send a GET request
-    function request(url) {
+    function request(url, cached) {
         var d = $q.defer();
         $http.get(url, {
-            cache: true,
+            cache: cached,
+            headers: { 'Cache-Control' : cached ? 'cache' : 'no-cache' },
         }).
 
             then(function(response) {
@@ -70,10 +71,10 @@ app.factory('Timeline', ['$q', '$http', function($q, $http) {
 
             // Step 1
             console.log('real');
-            sortedList[layer] = [];
-            sortedList[layer][0] = list[0];
-            list.splice(0, 1);
+            sortedList[0] = [];
+            sortedList[0][0] = testList[0];
             console.log(sortedList[layer]);
+            console.log(sortedList[layer].length);
 
             // Step 2 - 4
             for(var index = 0; index < list.length; index++) {
@@ -114,32 +115,39 @@ app.factory('Timeline', ['$q', '$http', function($q, $http) {
 
     self.highlights = function(callback) {
 
-        request('https://api.twitch.tv/kraken/videos/followed?oauth_token=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&limit=50').then(function(highlights) {
+        // Get config
+        request('/api/config', false).then(function(config) {
 
-            // Sort videos by recorded_at
-            highlights.videos.sort(function(a, b) {
-                return a.recorded_at.localeCompare(b.recorded_at);
+            console.log(config);
+
+            // Get highlights
+            request('https://api.twitch.tv/kraken/videos/followed?oauth_token=' + config.oauth_token + '&limit=50', true).then(function(highlights) {
+
+                // Sort videos by recorded_at
+                highlights.videos.sort(function(a, b) {
+                    return a.recorded_at.localeCompare(b.recorded_at);
+                });
+
+                // Manipulate object properties
+                highlights.videos.forEach(function(video) {
+
+                    // Convert recorded_at to date object
+                    video.recorded_at = new Date(video.recorded_at);
+
+                    // Add ended_at date
+                    video.ended_at = new Date(video.recorded_at);
+                    video.ended_at.setSeconds(video.ended_at.getSeconds() + video.length);
+
+                    // Add seconds length (To avoid .length (minutes) from being confused with .length (array length))
+                    video.seconds = video.length;
+                });
+
+                console.log('Raw list');
+                console.table(highlights.videos, ['title', 'recorded_at', 'ended_at']);
+
+                // Return sorted list
+                return callback(sort(highlights.videos));
             });
-
-            // Manipulate object properties
-            highlights.videos.forEach(function(video) {
-
-                // Convert recorded_at to date object
-                video.recorded_at = new Date(video.recorded_at);
-
-                // Add ended_at date
-                video.ended_at = new Date(video.recorded_at);
-                video.ended_at.setSeconds(video.ended_at.getSeconds() + video.length);
-
-                // Add seconds length (To avoid .length (minutes) from being confused with .length (array length))
-                video.seconds = video.length;
-            });
-
-            console.log('Raw list');
-            console.table(highlights.videos, ['title', 'recorded_at', 'ended_at']);
-
-            // Return sorted list
-            return callback(sort(highlights.videos));
         });
 
     };

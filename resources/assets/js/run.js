@@ -12,7 +12,7 @@ app.run(['$http', 'CacheFactory', function($http, CacheFactory) {
     /**
      * Angular Cache
      */
-    $http.defaults.cache = CacheFactory('TwitchAppCache', {
+    $http.defaults.cache = CacheFactory('TwitchTimelineCache', {
         maxAge: 15 * 60 * 1000,                 // Items added to this cache expire after 15 minutes
         cacheFlushInterval: 60 * 60 * 1000,     // This cache will clear itself every hour
         deleteOnExpire: 'aggressive',           // Items will be deleted from this cache when they expire
