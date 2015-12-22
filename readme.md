@@ -1,4 +1,6 @@
-# Twitch Timeline
+# Twitch Timeline - Discontinued
+
+**This project has been discontinued and replaced by Twitchflix, a private project.**
 
 A timeline of your favorite streamers' past broadcasts and highlights.
 
